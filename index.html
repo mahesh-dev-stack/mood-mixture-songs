@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mood Mixer — Stream Music by Mood</title>
+  <meta name="description" content="Pick a mood and instantly stream royalty-free music. Chill, Happy, Energetic, Sad, Focus, Party and more — powered by Jamendo." />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mood Mixer" />
+  <meta property="og:description" content="Stream royalty-free music matched to your mood." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ────────────────────────────────────────────────────── -->
+  <header class="app-header" role="banner">
+    <div class="header-inner">
+      <div class="logo" aria-label="Mood Mixer">
+        <span class="logo-icon" aria-hidden="true">🎧</span>
+        <span class="logo-text">Mood<strong>Mixer</strong></span>
+      </div>
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle light/dark theme" title="Toggle theme">☀️</button>
+    </div>
+  </header>
+
+  <!-- ── Main ──────────────────────────────────────────────────────── -->
+  <main class="app-main" role="main">
+
+    <!-- Hero section -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading" class="hero-title">
+        How are you feeling<span class="accent">?</span>
+      </h1>
+      <p class="hero-sub">Pick a mood and let the music flow.</p>
+    </section>
+
+    <!-- Mood Grid -->
+    <section class="mood-section" aria-label="Mood selector">
+      <div id="mood-grid" class="mood-grid" role="list" aria-label="Mood categories"></div>
+    </section>
+
+    <!-- Track Section (hidden until mood selected) -->
+    <section id="track-section" class="track-section hidden" aria-label="Track list">
+      <div class="tracks-header">
+        <h2 id="tracks-heading" class="tracks-title">Tracks</h2>
+      </div>
+      <div id="track-list" class="track-list" role="list" aria-label="Track results"></div>
+    </section>
+
+  </main>
+
+  <!-- ── Player Bar (fixed bottom) ─────────────────────────────────── -->
+  <div id="player-bar" class="player-bar" role="region" aria-label="Music player">
+    <div class="player-inner">
+
+      <!-- Track info -->
+      <div class="player-track-info">
+        <img id="player-art" class="player-art" src="" alt="Album art" />
+        <div class="player-meta">
+          <div id="player-track-name" class="player-track-name">—</div>
+          <div id="player-artist-name" class="player-artist-name">Select a mood to start</div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="player-controls">
+        <button id="btn-prev" class="ctrl-btn" aria-label="Previous track" title="Previous (←)">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <polygon points="19,5 7,12 19,19"/>
+            <rect x="5" y="5" width="2" height="14"/>
+          </svg>
+        </button>
+
+        <button id="btn-play-pause" class="ctrl-btn play-btn" aria-label="Play">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+
+        <button id="btn-next" class="ctrl-btn" aria-label="Next track" title="Next (→)">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <polygon points="5,5 17,12 5,19"/>
+            <rect x="17" y="5" width="2" height="14"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Progress -->
+      <div class="player-progress-group">
+        <span id="time-current" class="time-label">0:00</span>
+        <div id="progress-bar" class="progress-bar" role="slider" aria-label="Track progress"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <div class="progress-track">
+            <div id="progress-fill" class="progress-fill"></div>
+            <div id="progress-thumb" class="progress-thumb"></div>
+          </div>
+        </div>
+        <span id="time-total" class="time-label">0:00</span>
+      </div>
+
+      <!-- Volume -->
+      <div class="player-volume">
+        <button id="volume-icon" class="icon-btn vol-icon" aria-label="Toggle mute">🔊</button>
+        <input id="volume-slider" type="range" class="volume-slider"
+               min="0" max="100" value="80" aria-label="Volume" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts — order matters: config → api → player → ui → main -->
+  <script src="config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
